@@ -8,15 +8,19 @@
   <h4 class="gotham">Coneculta te enviara un SMS para verificar tu numero de telefono para poder acceder
     a la aplicacion. Introduce tu numero de telefono</h4>
   <br>
-      <div class = "cont1"> 
+     <form (ngSubmit)="login( v )"
+     #v="ngForm" >
+      <div class = "col ion-text-center"> 
+        <span *ngIf="v.submitted && v.controls['telefono'].errors" 
+        class="text-danger">El telefono es obligatorio</span>
       <ion-item >
-      <ion-input  type="tel" placeholder="Telefono"></ion-input>
+      <ion-input  type="text" [(ngModel)]="empleado.telefono" minlength="10"  name="telefono" required placeholder="Telefono"></ion-input>
       </ion-item>
       <br>
       <br>
-        <ion-button routerLink="/verificacion" class="boton" color="primary">Enviar</ion-button>
+        <ion-button type="submit" color="primary">Enviar</ion-button>
       </div>
-      
+    </form>
      
   <br>
   

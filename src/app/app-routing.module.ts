@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'verificacion',
     loadChildren: () => import('./verificacion/verificacion.module').then( m => m.VerificacionPageModule)
+  },
+  {
+    path: 'empleados',
+    loadChildren: () => import('./Administracion/empleados/empleados.module').then( m => m.EmpleadosPageModule)
+  },
+  {
+    path: 'empleado/:id',
+    loadChildren: () => import('./Administracion/empleado/empleado.module').then( m => m.EmpleadoPageModule)
   }
 ];
 

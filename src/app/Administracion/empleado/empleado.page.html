@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Empleado <small> Nombre del empleado</small></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row mt-3">
+    <div class="col ion-text-right" >
+     <ion-button routerLink="/empleados"  mode="ios" color="danger">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Regresar
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-grid fixed>
+    <form (ngSubmit)="guardar( e )"
+    #e="ngForm">
+    <ion-row >
+      <ion-col class="paddin">
+          <ion-label >ID</ion-label>
+          <ion-input disabled="disabled" type="text" placeholder="Firebase id" [(ngModel)]="empleado.id" name="id"></ion-input>
+          <small class="form-text text-muted">Este campo es autogenerado</small>
+        </ion-col>
+      </ion-row >
+      <ion-row >
+         <ion-col class="paddin">
+          <ion-label>Nombre(s)</ion-label>
+          <ion-input placeholder="Ingrese el nombre del empleado" [(ngModel)]="empleado.nombre" name="nombre" required></ion-input>
+         </ion-col>
+       </ion-row>
+
+       <ion-row >
+        <ion-col class="paddin">
+         <ion-label>Apellidos</ion-label>
+         <ion-input placeholder="Ingrese el apellido del empleado" [(ngModel)]="empleado.apellido" name="apellido"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col class="paddin">
+         <ion-label>Telefono</ion-label>
+         <ion-input placeholder="Ingrese el telefono del empleado" type="tel" [(ngModel)]="empleado.telefono" name="telefono"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col class="paddin">
+         <ion-label>Rol</ion-label><br>
+         <ion-select  interface="alert"  placeholder="Selecciona el rol" [(ngModel)]="empleado.rol" name="rol" mode="ios">
+          <ion-select-option value="usuario">Usuario</ion-select-option>
+          <ion-select-option value="administrador">Administrador</ion-select-option>
+        </ion-select>
+        </ion-col>
+      </ion-row>
+
+        <div class="form group ion-text-center">
+          <ion-button type="submit" color="tertiary">
+            <ion-icon name="save-sharp"></ion-icon>
+          &nbsp; Guardar
+       </ion-button>
+        </div>
+
+      </form>
+  </ion-grid>
+</ion-content>

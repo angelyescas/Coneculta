@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
       title: 'Asistencia',
       url: '/folder/Asistencia',
       svg: '../assets/icon/asistencia.svg'
+    },
+    {
+      title: 'Empleados',
+      url: '/empleados',
+      svg: '../assets/icon/asistencia.svg'
     }
   ];
   
