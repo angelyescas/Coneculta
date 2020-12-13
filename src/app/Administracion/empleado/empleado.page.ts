@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { EmpleadoModel } from '../../Models/empleado.model';
 import { EmpleadosService } from '../../services/empleados.service';
-
-import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-empleado',
@@ -15,62 +13,60 @@ import { AlertController } from '@ionic/angular';
 })
 export class EmpleadoPage implements OnInit {
 
-  empleado: EmpleadoModel = new EmpleadoModel();
-  constructor( private empleadosService: EmpleadosService,
-                private route: ActivatedRoute,
-                private alertController: AlertController
-    ) { }
+  employeeForm: FormGroup;
+  id: string;
+  constructor(private empleadosService: EmpleadosService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private alert: ToastService
+  ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if( id !== 'nuevo'){
-      this.empleadosService.getEmpleado(id)
-      .subscribe( (resp:EmpleadoModel) =>{
-        this.empleado = resp;
-        this.empleado.id = id;
-      });
+    this.initForm();
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id !== 'nuevo') {
+      this.empleadosService.getById(this.id)
+        .subscribe((resp: EmpleadoModel) => {
+          this.initForm(resp);
+        });
     }
-
-    console.log(id);
   }
 
-  guardar( form: NgForm){
-
-    if (form.invalid){
-      Swal.fire({
-        title: '  No valido',
-        text: 'Faltan datos',
-        icon: 'error'
-      })
-      console.log('Formulario no valido');
-      return;
-    }
-
-    Swal.fire({
-      title: 'Espere',
-      text: 'Guardando Informacion',
-      icon: 'info',
-      allowOutsideClick: false
+  initForm(employee?: EmpleadoModel) {
+    this.employeeForm = new FormGroup({
+      id: new FormControl(employee ? employee.id : ''),
+      nombre: new FormControl(employee ? employee.nombre : '', Validators.required),
+      apellido: new FormControl(employee ? employee.apellido : '', Validators.required),
+      phone: new FormControl(employee ? employee.phone : '', [Validators.required, Validators.maxLength(10)]),
+      rol: new FormControl(employee ? employee.rol : '', Validators.required),
+      password: new FormControl(employee ? employee.password : '', Validators.required),
     });
-    Swal.showLoading();
-    
-    let peticion: Observable<any>;
+  }
 
-    if(this.empleado.id){
-      peticion=this.empleadosService.actualizarEmpleado( this.empleado);
-
-    } else{
-      peticion=this.empleadosService.crearEmpleado( this.empleado);
+  save() {
+    if (this.id == "nuevo") {
+      this.create();
+    } else {
+      this.update();
     }
+  }
 
-    peticion.subscribe( resp => {
-     Swal.fire({
-        title: this.empleado.nombre,
-        text: 'Se actualizo Correctamente',
-        icon: 'success'
-     });
+  create() {
+    this.empleadosService.create(this.employeeForm.value).then(() => {
+      this.alert.success("¡Se ha creado correctamente al usuario!");
+      this.router.navigate(['/empleados']);
+    }).catch(() => {
+      this.alert.error("¡Ocurrió un error al realizar la operación!");
     });
-   
+  }
+
+  update() {
+    this.empleadosService.update(this.employeeForm.value).then(() => {
+      this.alert.success("¡Se ha actualizado correctamente al usuario!");
+      this.router.navigate(['/empleados']);
+    }).catch(() => {
+      this.alert.error("¡Ocurrió un error al realizar la operación!");
+    });
   }
 
 }

@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'verificacion',
-    loadChildren: () => import('./verificacion/verificacion.module').then( m => m.VerificacionPageModule)
-  },
-  {
     path: 'empleados',
     loadChildren: () => import('./Administracion/empleados/empleados.module').then( m => m.EmpleadosPageModule)
   },

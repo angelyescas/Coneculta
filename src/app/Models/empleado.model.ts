@@ -1,10 +1,8 @@
 export class EmpleadoModel {
-    
-    id:string;
+    id: string;
     nombre: string;
-    apelllido: string;
-    telefono: string;
-    Rol: string;
-
-    
+    apellido: string;
+    phone: string;
+    rol: string;
+    password: string;
 }
