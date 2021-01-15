@@ -3,31 +3,109 @@
 </ion-header>
 <ion-content>
   <br>
-  <h2 class="gandhi"> Verifica tu numero </h2>
-  <br><br>
-  <h4 class="gotham">Coneculta te enviara un SMS para verificar tu numero de telefono para poder acceder
+  <h2 class="gothic"> Verifica tu numero </h2>
+
+  <h4 class="gothic">Coneculta te enviara un SMS para verificar tu numero de telefono para poder acceder
     a la aplicacion. Introduce tu numero de telefono</h4>
-  <br>
+
   <form (ngSubmit)="login()">
     <div class="col ion-text-center">
-      <ion-item>
-        <ion-input type="number" [formControl]="phone" placeholder="Telefono">
-        </ion-input>
-      </ion-item>
-      <span *ngIf="phone.errors" class="text-danger">El telefono es obligatorio</span>
-      <ion-item>
-        <ion-input type="text" [formControl]="password" placeholder="Telefono">
-        </ion-input>
-      </ion-item>
-      <span *ngIf="password.errors" class="text-danger">La contraseña es obligatorio</span>
+
+      <ion-list>  
+        <ion-item>
+          <ion-input class="phone" type="text" [formControl]="phone" placeholder="Telefono">
+          </ion-input>
+        </ion-item>
+      
+      
+        <ion-item>
+          <ion-input class="password" type="password" [formControl]="password" placeholder="constraseña">
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <span *ngIf="password.errors" style="display: none" class="text-danger">La contraseña es obligatorio</span>
       <br>
+      <span *ngIf="phone.errors" style="display: none"  class="text-danger">El telefono es obligatorio</span>
+      
+    
       <br>
-      <ion-button type="submit" color="primary" [disabled]="phone.invalid || password.invalid">Enviar</ion-button>
+
+      <button ion-button large type="submit" color="primary" [disabled]="phone.invalid || password.invalid">Enviar</button>
+      
     </div>
   </form>
 
   <br>
 
+  <p>
+    <button ion-button color="light" icon-start>
+      <ion-icon name='arrow-back'></ion-icon>
+      Back
+    </button>
 
+    <button ion-button color="light" icon-only>
+      <ion-icon name='arrow-down'></ion-icon>
+    </button>
 
-</ion-content>
+    <button ion-button color="light" icon-only>
+      <ion-icon name='arrow-up'></ion-icon>
+    </button>
+
+    <button ion-button color="light" icon-end>
+      Next
+      <ion-icon name='arrow-forward'></ion-icon>
+    </button>
+  </p>
+
+  <p>
+    <button ion-button icon-start>
+      <ion-icon name='home'></ion-icon>
+      Home
+    </button>
+    <button ion-button outline icon-start>
+      <ion-icon name='briefcase' is-active="false"></ion-icon>
+      Work
+    </button>
+    <button ion-button clear icon-start>
+      <ion-icon name='beer' is-active="false"></ion-icon>
+      Pub
+    </button>
+  </p>
+
+  <p>
+    <button ion-button color="secondary" icon-start>
+      <ion-icon name='people'></ion-icon>
+      Friends
+    </button>
+    <button ion-button color="secondary" outline icon-start>
+      <ion-icon name='paw' is-active="false"></ion-icon>
+      Best Friend
+    </button>
+  </p>
+
+  <p>
+    <button ion-button color="danger" icon-start>
+      <ion-icon name='close'></ion-icon>
+      Remove
+    </button>
+    <button ion-button color="danger" outline icon-only>
+      <ion-icon name='remove-circle' is-active="false"></ion-icon>
+    </button>
+    <button ion-button color="danger" clear icon-only>
+      <ion-icon name='trash' is-active="false"></ion-icon>
+    </button>
+  </p>
+
+  <p>
+    <button ion-button color="dark" round icon-start>
+      <ion-icon name='construct' is-active="false"></ion-icon>
+      Tools
+    </button>
+    <button ion-button color="dark" clear icon-only>
+      <ion-icon name='hammer' is-active="false"></ion-icon>
+    </button>
+  </p>
+
+  </ion-content>

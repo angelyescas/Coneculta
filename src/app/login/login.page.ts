@@ -6,11 +6,15 @@ import { EmpleadoModel } from '../Models/empleado.model';
 import { EmpleadosService } from '../services/empleados.service';
 import { ToastService } from '../services/toast.service';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
+
 export class LoginPage implements OnInit {
   phone: FormControl;
   password: FormControl;
