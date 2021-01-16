@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/empleados']);
       } else {
         this.alert.warning("¡Telefono o contraseña no valido!");
+        this.router.navigate(['/inicio']); //Borrar siempre manda a esta parte aun la contraseña este bien
       }
     }, error => {
       this.alert.error("¡Ocurrió un error al realizar la operación!");
