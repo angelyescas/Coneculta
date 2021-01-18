@@ -7,11 +7,11 @@ import { EmpleadosService } from '../services/empleados.service';
 import { ToastService } from '../services/toast.service';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.page.html',
-  styleUrls: ['./inicio.page.scss'],
+  selector: 'app-ver-asistencias',
+  templateUrl: './ver-asistencias.page.html',
+  styleUrls: ['./ver-asistencias.page.scss'],
 })
-export class InicioPage implements OnInit {
+export class VerAsistenciasPage implements OnInit {
 
   constructor(private menu: MenuController,private alert: ToastService, private router: Router) {} 
 
@@ -19,10 +19,9 @@ export class InicioPage implements OnInit {
     this.menu.enable(false);
   }
 
-  inicio()
+  asistenciaDetalle()
   {
     //this.alert.error("¡Ocurrió un error al realizar la operación!");
-    this.router.navigate(['/ver-asistencias']); //Borrar siempre manda a esta parte aun la contraseña este bien
+    this.router.navigate(['/asistencia-detalle']); //Borrar siempre manda a esta parte aun la contraseña este bien
   }
-
 }

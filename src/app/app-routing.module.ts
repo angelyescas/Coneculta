@@ -25,6 +25,14 @@ const routes: Routes = [
   },  {
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'ver-asistencias',
+    loadChildren: () => import('./ver-asistencias/ver-asistencias.module').then( m => m.VerAsistenciasPageModule)
+  },
+  {
+    path: 'asistencia-detalle',
+    loadChildren: () => import('./asistencia-detalle/asistencia-detalle.module').then( m => m.AsistenciaDetallePageModule)
   }
 
 ];

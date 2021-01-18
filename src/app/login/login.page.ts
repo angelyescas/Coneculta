@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
         let empleado: EmpleadoModel = empleados[0];
         this.alert.success("¡Inicio sesión exitosamente!");
         this.employeeService.saveLocal(empleado);
-        this.router.navigate(['/empleados']);
+        this.router.navigate(['/inicio']);
       } else {
         this.alert.warning("¡Telefono o contraseña no valido!");
         this.router.navigate(['/inicio']); //Borrar siempre manda a esta parte aun la contraseña este bien
